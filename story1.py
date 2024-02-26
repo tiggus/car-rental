@@ -28,7 +28,7 @@ def main():
     rental_company = CarRentalCompany()
     querycar = input("make of car? :")
     def criteria(car):
-        return car.make == querycar and car.available
+        return car.make == querycar #and car.available
 
     matching_cars = rental_company.find_matching_cars(criteria)
     for car in matching_cars:
