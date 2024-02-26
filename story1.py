@@ -1,19 +1,17 @@
 import threading
-
-class Car:
-    def __init__(self, make, model, year, available=True):
-        self.make = make
-        self.model = model
-        self.year = year
-        self.available = available
+from datetime import date
+from main.rental.Renter import Renter
+from main.rental.Car import Car
+from main.rental.Criteria import Criteria
+from main.rental.CarRentalCompany import CarRentalCompany
 
 class CarRentalCompany:
     def __init__(self):
         self.available_cars = [
-            Car("Toyota", "RAV4", 2020),
-            Car("BMW", "X3", 2019),
-            Car("BMW", "X5", 2019),
-            Car("Ford", "Fiesta", 2021)
+            Car("Toyota", "RAV4", "NHK 337P", "B2", 90),
+            Car("BMW", "X3", "NHK 338P", "C1", 90),
+            Car("BMW", "X5", "NHK 339P", "A1", 90),
+            Car("Ford", "Fiesta", "NHK 340P", "A1", 90)
         ]
         self.lock = threading.Lock()
 
@@ -28,13 +26,13 @@ class CarRentalCompany:
 # main part !
 def main():
     rental_company = CarRentalCompany()
-
+    querycar = input("make of car? :")
     def criteria(car):
-        return car.make == "Ford" and car.available
+        return car.make == querycar and car.available
 
     matching_cars = rental_company.find_matching_cars(criteria)
     for car in matching_cars:
-        print(f"{car.make} {car.model} {car.year}")
+        print(f"{car.make} {car.model}")
 
 if __name__ == "__main__":
     main()

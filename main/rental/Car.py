@@ -6,3 +6,4 @@ class Car:
         self.rental_group = rental_group
         self.cost_per_day = cost_per_day
         self.available = available
+
